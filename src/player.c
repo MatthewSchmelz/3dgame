@@ -48,25 +48,44 @@ void player_think(Entity *self)
     w = vector2d_from_angle(self->rotation.z - GFC_HALF_PI);
     right.x = w.x;
     right.y = w.y;
+    //Send to Port
     if (keys[SDL_SCANCODE_W])
     {   
         vector3d_add(self->position,self->position,forward);
+        self->location = 2;
     }
+    //Send to Hallway
     if (keys[SDL_SCANCODE_S])
     {
         vector3d_add(self->position,self->position,-forward);        
+        self->location = 3;
     }
+    //Send to Port
     if (keys[SDL_SCANCODE_D])
     {
         vector3d_add(self->position,self->position,right);
+        self->location = 4;
     }
+    //Send to Starboard
     if (keys[SDL_SCANCODE_A])    
     {
         vector3d_add(self->position,self->position,-right);
+        self->location = 5;
     }
-    if (keys[SDL_SCANCODE_SPACE])self->position.z += 1;
-    if (keys[SDL_SCANCODE_Z])self->position.z -= 1;
+    //Send to Hallway
+    if (keys[SDL_SCANCODE_X]) {
+    self->location = 1;
     
+    }
+    //Activate defense for current spot
+    if (keys[SDL_SCANCODE_SPACE]) {
+        self->position.z += 1;
+    }
+
+    if (keys[SDL_SCANCODE_Z]) {
+        
+        self->position.z -= 1;
+    }
     if (keys[SDL_SCANCODE_UP])self->rotation.x -= 0.0050;
     if (keys[SDL_SCANCODE_DOWN])self->rotation.x += 0.0050;
     if (keys[SDL_SCANCODE_RIGHT])self->rotation.z -= 0.0050;
@@ -102,8 +121,8 @@ void player_update(Entity *self)
         forward.y = w.y * 100;
         vector3d_add(position,position,-forward);
     }
-    gf3d_camera_set_position(position);
-    gf3d_camera_set_rotation(rotation);
+   gf3d_camera_set_position(position);
+   gf3d_camera_set_rotation(rotation);
 }
 
 /*eol@eof*/
