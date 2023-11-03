@@ -150,17 +150,13 @@ void entity_update_all()
 
 void entity_reduce_stage(Entity* self) {
     if (!self) return;
-    self->stage = (self->stage) - (10 * gfc_random());
-    if ((self->stage) < 0) {
-        self->stage = 0;
-    }
+    self->stage = 0;
 }
 
 void entity_increase_stage(Entity* self) {
     if (!self) return;
-    self->stage = (self->stage) + 1;
-    if (self->stage > 4) {
-        entity_kill_player(self);
+    if (self->stage < 5) {
+        self->stage = (self->stage) + 1;
     }
 }
 

@@ -1,0 +1,7 @@
+{
+    "model":
+    {
+        "model":"models/shambler/shambler.obj",
+        "texture":"models/shambler/shambler.png"
+    }
+}

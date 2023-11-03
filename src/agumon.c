@@ -40,7 +40,7 @@ void agumon_update(Entity *self)
 
 void agumon_think(Entity* self)
 {
-    if (!self)return;
+    /*if (!self)return;
     // slog("Thinking");
     //Every think we increase the agression by 1, stacking indefinately. We then add a Check 
     //Against a threat variable(Or just hard code a threat). If it rolls higher than the threat, we advance the stage
@@ -54,7 +54,7 @@ void agumon_think(Entity* self)
     if (self->stage >= 5 ) {
         //check door
     }
-
+    */
 }
 
 /*eol@eof*/

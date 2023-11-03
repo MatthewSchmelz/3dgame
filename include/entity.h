@@ -60,6 +60,10 @@ typedef struct Entity_S
     int         Lharpoon;
     int         Rharpoon;
     int         time;
+    int         speed;
+    int     drainers;
+    int     leftlight;
+    int     rightlight;
 
     // WHATEVER ELSE WE MIGHT NEED FOR ENTITIES
     struct Entity_S *target;    /**<entity to target for weapons / ai*/

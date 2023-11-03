@@ -1,0 +1,7 @@
+{
+    "model":
+    {
+        "model":"models/drainer/drainer.obj",
+        "texture":"models/drainer/drainer.png"
+    }
+}
