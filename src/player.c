@@ -114,19 +114,19 @@ void player_think(Entity *self)
         
         //self->position.z -= 1;
     }
-    if (keys[SDL_SCANCODE_UP])self->rotation.x -= 0.0050;
-    if (keys[SDL_SCANCODE_DOWN])self->rotation.x += 0.0050;
-    if (keys[SDL_SCANCODE_RIGHT])self->rotation.z -= 0.0050;
-    if (keys[SDL_SCANCODE_LEFT])self->rotation.z += 0.0050;
+    //if (keys[SDL_SCANCODE_UP])self->rotation.x -= 0.0050;
+    //if (keys[SDL_SCANCODE_DOWN])self->rotation.x += 0.0050;
+    //if (keys[SDL_SCANCODE_RIGHT])self->rotation.z -= 0.0050;
+    //sif (keys[SDL_SCANCODE_LEFT])self->rotation.z += 0.0050;
     
     //if (mouse.x != 0)self->rotation.z -= (mouse.x * 0.001);
     //if (mouse.y != 0)self->rotation.x += (mouse.y * 0.001);
 
-    if (keys[SDL_SCANCODE_F3])
-    {
-        thirdPersonMode = !thirdPersonMode;
-        self->hidden = !self->hidden;
-    }
+  //  if (keys[SDL_SCANCODE_F3])
+    //{
+      //  thirdPersonMode = !thirdPersonMode;
+       // self->hidden = !self->hidden;
+   // }
 }
 
 void player_update(Entity *self)

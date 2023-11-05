@@ -43,6 +43,8 @@ int cargo = 0;
 int arcane = 0;
 int madman = 0;
 
+int doorstate =0;
+
 
 Uint32 callback_time(Uint32 interval, void* param) {
     
@@ -115,7 +117,7 @@ Uint32 callback_monster(Uint32 interval, void* param) {
     //if shambler is stage 5, check the door
 
     if (shambler->stage == 5) {
-        if (door->stage == 1) {
+        if (door->stage == 0) {
             slog("You died");
         } else {
             shambler->stage = 0;
@@ -280,7 +282,7 @@ int main(int argc,char *argv[])
     player->power = 100;
     player->Lharpoon = 1;
     player->Rharpoon = 1;
-    player->time = 300;
+    player->time = 300; 
     player->speed = 15;
     player->drainers = 0;
     player->rightlight = 0;
@@ -340,14 +342,14 @@ int main(int argc,char *argv[])
 
             // Use sprintf to convert player->power to a string
             sprintf(powerString, "%d", player->power);
-            gf2d_font_draw_line_tag(powerString, FT_H1, GFC_COLOR_YELLOW, vector2d(512, 300), 3);
+            gf2d_font_draw_line_tag(powerString, FT_H1, GFC_COLOR_GREEN, vector2d(512, 300), 3);
 
             ///Add UI to View the Speed
             char SpeedString[50]; // Create a character array to store the converted string
 
             // Use sprintf to convert player->power to a string
             sprintf(SpeedString, "%d", player->speed);
-            gf2d_font_draw_line_tag(SpeedString, FT_H1, GFC_COLOR_YELLOW, vector2d(512, 350), 3);
+            gf2d_font_draw_line_tag(SpeedString, FT_H1, GFC_COLOR_GREEN, vector2d(512, 350), 3);
 
         }
         else if (player->location == 2) {
@@ -378,7 +380,21 @@ int main(int argc,char *argv[])
 
         gf2d_draw_rect(gfc_rect(0, 0, 10000, 200), gfc_color8(255, 255, 255, 255)); //Outline
 
-        gf2d_sprite_draw(mouse, vector2d(mousex, mousey), vector2d(2, 2), vector3d(8, 8, 0), gfc_color(0.3, .9, 1, 0.9), (Uint32)mouseFrame);
+        if (player->time ==0 || player->sanity ==0 || shambler->stage ==5) {
+            gf2d_draw_rect_filled(gfc_rect(0, 0, 10000, 10000), GFC_COLOR_BLACK);
+            if (player->time == 0) {
+                gf2d_font_draw_line_tag("FINISHED SHIFT", FT_H1, GFC_COLOR_WHITE, vector2d(312, 200), 3);
+            }
+            if (player->sanity == 0) {
+                gf2d_font_draw_line_tag("MIND BROKEN", FT_H1, GFC_COLOR_CYAN, vector2d(312, 200), 3);
+            }
+            if (shambler->stage == 5 && door->stage ==0) {
+                gf2d_font_draw_line_tag("LOST AT SEA", FT_H1, GFC_COLOR_RED, vector2d(312, 200), 3);
+            }
+            
+        }
+
+        //gf2d_sprite_draw(mouse, vector2d(mousex, mousey), vector2d(2, 2), vector3d(8, 8, 0), gfc_color(0.3, .9, 1, 0.9), (Uint32)mouseFrame);
 
 
         //ACTUAL GAME
@@ -393,17 +409,21 @@ int main(int argc,char *argv[])
             if (player->location == 3) {
                 slog("activating doors");
                 //close or open doors
-                if (door->stage == 0) {
+                if(doorstate != 0){
                     player->drainers--;
-                } else {
+                    doorstate = 0;
+                }
+                else {
                     player->drainers++;
+                    doorstate = 1;
                 }
                 door_check(door);
+
 
             }
             else if (player->location == 2) {
                 slog("Shocking Power dude");
-                player->power = player->power - 5;
+                player->power = player->power -5;
                 //Shock the power eater
                 if (drainer->stage == 5) {
                     drainer->stage = 0;
@@ -493,10 +513,10 @@ int main(int argc,char *argv[])
            watcher2->stage = 5;
        }
        //If lights are on, and watchers aren't stage 5, reset them
-       if (player->leftlight == 1) {
+       if (player->leftlight == 1 && watcher1->stage != 5) {
            watcher1->stage = 0;
        }
-       if (player->rightlight == 1) {
+       if (player->rightlight == 1 && watcher2->stage != 5) {
            watcher2->stage = 0;
        }
 
