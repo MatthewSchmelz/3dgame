@@ -1,0 +1,7 @@
+{
+    "model":
+    {
+        "model":"models/harpoon/harpoon.obj",
+        "texture":"models/harpoon/harpoon.png"
+    }
+}

@@ -148,4 +148,22 @@ void entity_update_all()
     }
 }
 
+void entity_reduce_stage(Entity* self) {
+    if (!self) return;
+    self->stage = 0;
+}
+
+void entity_increase_stage(Entity* self) {
+    if (!self) return;
+    if (self->stage < 5) {
+        self->stage = (self->stage) + 1;
+    }
+}
+
+void entity_kill_player(Entity* self) {
+    if (!self) return;
+    //slog("You died");
+    //Needs to stop controls and display a game over screen, also probably a jump scare
+}
+
 /*eol@eof*/

@@ -24,6 +24,7 @@ Entity *agumon_new(Vector3D position)
     ent->update = agumon_update;
     vector3d_copy(ent->position,position);
     return ent;
+    ent->aggression = 0;
 }
 
 void agumon_update(Entity *self)
@@ -37,24 +38,23 @@ void agumon_update(Entity *self)
     self->rotation.z += 0.01;
 }
 
-void agumon_think(Entity *self)
+void agumon_think(Entity* self)
 {
-    if (!self)return;
-    switch(self->state)
-    {
-        case ES_idle:
-            //look for player
-            break;
-        case ES_hunt:
-            // set move towards player
-            break;
-        case ES_dead:
-            // remove myself from the system
-            break;
-        case ES_attack:
-            // run through attack animation / deal damage
-            break;
+    /*if (!self)return;
+    // slog("Thinking");
+    //Every think we increase the agression by 1, stacking indefinately. We then add a Check 
+    //Against a threat variable(Or just hard code a threat). If it rolls higher than the threat, we advance the stage
+    //of the Entity by one. If the stage of the shambler hits 5, it kills the player if the door is open.
+    self->aggression++;
+    if ((self->aggression + (gfc_crandom() * 100)) > 200) {
+        entity_increase_stage(self);
     }
+    //check if it hit stage 5, if it did, check the door, if it is open, kill the player, if it is not
+    //reduce stage.
+    if (self->stage >= 5 ) {
+        //check door
+    }
+    */
 }
 
 /*eol@eof*/

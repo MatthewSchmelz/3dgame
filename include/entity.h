@@ -46,6 +46,25 @@ typedef struct Entity_S
     Vector3D    rotation;
     
     Uint32      health;     /**<entity dies when it reaches zero*/
+    //
+    // CHANGES MADE BY YOURS TRULY
+    //
+    Uint32      stage; //An indicator of how close it is to killing the player.Will be 0-4. The higher the number, the closer to the bridge
+    float        aggression; //Gonna work this similarly to fnaf, roll a d20, if its under the agression, they get to move.
+
+    //Player Variables
+    //Location for the player. 1= Console 2= Bridge 3=Hallway 4=Left Window 5= Right Window
+    int         location;
+    int       power;
+    int       sanity;
+    int         Lharpoon;
+    int         Rharpoon;
+    int         time;
+    int         speed;
+    int     drainers;
+    int     leftlight;
+    int     rightlight;
+
     // WHATEVER ELSE WE MIGHT NEED FOR ENTITIES
     struct Entity_S *target;    /**<entity to target for weapons / ai*/
     
@@ -98,4 +117,19 @@ void entity_think_all();
  */
 void entity_update_all();
 
+///Extra functions to work with for my entity system
+
+
+/**
+ * @brief Reduce the entity's stage back a random amount.
+ */
+void entity_reduce_stage();
+/**
+ * @brief kill the player/trigger a jump-scare for the player
+ */
+void entity_kill_player();
+/**
+ * @brief Increase the entity's current stage
+ */
+void entity_increase_stage();
 #endif

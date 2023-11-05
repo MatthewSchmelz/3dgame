@@ -1,0 +1,9 @@
+{
+    "world":
+    {
+        "model":"models/cargoship.model",
+        "position":[0,-0,-0],
+        "scale":[5,5,5],
+        "rotation":[0,0,0]
+    }
+}

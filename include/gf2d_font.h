@@ -69,8 +69,8 @@ void gf2d_font_update();
  * @brief draw text to the screen overlay layer
  */
 void gf2d_font_draw_line_named(char *text,char *filename,Color color, Vector2D position);
-void gf2d_font_draw_line_tag(char *text,FontTypes tag,Color color, Vector2D position);
-void gf2d_font_draw_line(char *text,Font *font,Color color, Vector2D position);
+void gf2d_font_draw_line_tag(char *text,FontTypes tag,Color color, Vector2D position, int size);
+void gf2d_font_draw_line(char *text,Font *font,Color color, Vector2D position, int size);
 
 /**
  * @brief draw a word wrapped block of text to the sceen

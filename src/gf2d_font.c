@@ -343,15 +343,15 @@ Font *gf2d_font_get_by_tag(FontTypes tag)
 
 void gf2d_font_draw_line_named(char *text,char *filename,Color color, Vector2D position)
 {
-    gf2d_font_draw_line(text,gf2d_font_get_by_filename(filename),color, position);
+    gf2d_font_draw_line(text,gf2d_font_get_by_filename(filename),color, position, 1);
 }
 
-void gf2d_font_draw_line_tag(char *text,FontTypes tag,Color color, Vector2D position)
+void gf2d_font_draw_line_tag(char *text,FontTypes tag,Color color, Vector2D position, int size)
 {
-    gf2d_font_draw_line(text,gf2d_font_get_by_tag(tag),color, position);
+    gf2d_font_draw_line(text,gf2d_font_get_by_tag(tag),color, position, size);
 }
 
-void gf2d_font_draw_line(char *text,Font *font,Color color, Vector2D position)
+void gf2d_font_draw_line(char *text,Font *font,Color color, Vector2D position, int size)
 {
     SDL_Surface *surface;
     Sprite *sprite;
@@ -372,7 +372,7 @@ void gf2d_font_draw_line(char *text,Font *font,Color color, Vector2D position)
     if (image != NULL)
     {
         image->last_used = SDL_GetTicks();
-        gf2d_sprite_draw(image->image,position,vector2d(1,1),vector3d(0,0,0),gfc_color(1,1,1,1),0);
+        gf2d_sprite_draw(image->image,position,vector2d(size,size),vector3d(0,0,0),gfc_color(1,1,1,1),0);
         return;
     }
 
@@ -600,7 +600,7 @@ void gf2d_font_draw_text_wrap(
         if (sscanf(text,"%s",word) == EOF)
         {
             block.y=drawheight + (h*row);
-            gf2d_font_draw_line(temptextline,font,color, vector2d(block.x,block.y));
+            gf2d_font_draw_line(temptextline,font,color, vector2d(block.x,block.y), 1);
             return;
         }
         
@@ -618,7 +618,7 @@ void gf2d_font_draw_text_wrap(
         if(w > block.w)         /*see if we have gone over*/
         {
             block.y=drawheight + (h*row);
-            gf2d_font_draw_line(textline,font,color, vector2d(block.x,block.y));
+            gf2d_font_draw_line(textline,font,color, vector2d(block.x,block.y),1);
             row++;
             /*draw the line and get ready for the next line*/
             if (block.h != 0)
