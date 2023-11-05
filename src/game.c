@@ -404,7 +404,7 @@ int main(int argc,char *argv[])
             /* Poll for events. SDL_PollEvent() returns 0 when there are no  */
             /* more events on the event queue, our while loop will exit when */
             /* that occurs.                                                  */
-        if (gfc_input_command_pressed("defense") && cargo == 0) {
+        if (gfc_input_command_pressed("defense") && cargo == 0 && player->power > 0) {
             slog("we pressed space, activating current defense");
             if (player->location == 3) {
                 slog("activating doors");
