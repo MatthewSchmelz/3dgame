@@ -1,0 +1,10 @@
+{
+    "player":
+    {
+        "sanity": 100,
+        "power": 100,
+        "Lharpoon":1,
+        "Rharpoon":1,
+        "time":200
+    }
+}

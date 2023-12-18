@@ -8,7 +8,7 @@
  * @param position where to spawn the aguman at
  * @return NULL on error, or an player entity pointer on success
  */
-Entity *player_new(Vector3D position);
+Entity *player_new(Vector3D position, const char* filename);
 
 
 #endif

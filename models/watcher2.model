@@ -1,0 +1,7 @@
+{
+    "model":
+    {
+        "model":"models/watcher/watcher2.obj",
+        "texture":"models/watcher/watcher.png"
+    }
+}

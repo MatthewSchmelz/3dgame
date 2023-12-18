@@ -7,8 +7,62 @@
 static int thirdPersonMode = 0;
 void player_think(Entity *self);
 void player_update(Entity *self);
-
+/*
 Entity *player_new(Vector3D position)
+{
+    Entity *ent = NULL;
+
+    ent = entity_new();
+    if (!ent)
+    {
+        slog("UGH OHHHH, no player for you!");
+        return NULL;
+    }
+
+    ent->model = gf3d_model_load("models/dino.model");
+    ent->think = player_think;
+    ent->update = player_update;
+    vector3d_copy(ent->position,position);
+    ent->rotation.x = -GFC_PI;
+    ent->rotation.z = -GFC_HALF_PI;
+    ent->hidden = 1;
+    return ent;
+}
+
+
+
+Model * gf3d_model_load(const char * filename)
+{
+    SJson *json,*config;
+    Model *model;
+    if (!filename)return NULL;
+    json = sj_load(filename);
+    if (!json)return NULL;
+    config = sj_object_get_value(json,"model");
+    if (!config)
+    {
+        slog("file %s contains no model object",filename);
+        sj_free(json);
+        return NULL;
+    }
+    model = gf3d_model_load_from_config(config);
+    sj_free(json);
+    return model;
+}
+
+
+
+Model * gf3d_model_load_from_config(SJson *json)
+{
+    const char *model;
+    const char *texture;
+    if (!json)return NULL;
+    model = sj_get_string_value(sj_object_get_value(json,"model"));
+    texture = sj_get_string_value(sj_object_get_value(json,"texture"));
+    return gf3d_model_load_full(model,texture);
+}
+*/
+Entity *player_new(Vector3D position, const char* filename)
 {
     Entity *ent = NULL;
     
@@ -26,6 +80,39 @@ Entity *player_new(Vector3D position)
     ent->rotation.x = -GFC_PI;
     ent->rotation.z = -GFC_HALF_PI;
     ent->hidden = 1;
+
+    // Ensuring the config file works
+    SJson* json, * config;
+    if (!filename)return NULL;
+    json = sj_load(filename);
+    if (!json)return NULL;
+    config = sj_object_get_value(json, "player");
+    if (!config)
+    {
+        slog("file %s contains no player object", filename);
+        sj_free(json);
+        return NULL;
+    }
+    //taking the stats from said config file
+  
+    if (!sj_object_get_value_as_int(config, "sanity", &ent->sanity)) {
+        slog("Sanity not found");
+    }
+    if (!sj_object_get_value_as_int(config, "power", &ent->power)) {
+        slog("power not found");
+    }
+    if (!sj_object_get_value_as_int(config, "Lharpoon", &ent->Lharpoon)) {
+        slog("LH not found");
+    }
+    if (!sj_object_get_value_as_int(config, "Rharpoon", &ent->Rharpoon)) {
+        slog("RH not found");
+    }
+    if (!sj_object_get_value_as_int(config, "time", &ent->time)) {
+        slog("Time not found");
+    }
+   
+
+
     return ent;
 }
 
