@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gf3d", "gf3d.vcxproj", "{07D3D569-1C14-4175-B118-F031A7D4E2E2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07D3D569-1C14-4175-B118-F031A7D4E2E2}.Debug|x64.ActiveCfg = Debug|x64
+		{07D3D569-1C14-4175-B118-F031A7D4E2E2}.Debug|x64.Build.0 = Debug|x64
+		{07D3D569-1C14-4175-B118-F031A7D4E2E2}.Debug|x86.ActiveCfg = Debug|Win32
+		{07D3D569-1C14-4175-B118-F031A7D4E2E2}.Debug|x86.Build.0 = Debug|Win32
+		{07D3D569-1C14-4175-B118-F031A7D4E2E2}.Release|x64.ActiveCfg = Release|x64
+		{07D3D569-1C14-4175-B118-F031A7D4E2E2}.Release|x64.Build.0 = Release|x64
+		{07D3D569-1C14-4175-B118-F031A7D4E2E2}.Release|x86.ActiveCfg = Release|Win32
+		{07D3D569-1C14-4175-B118-F031A7D4E2E2}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8FD1A508-CA8A-45F1-87B0-71DB1CEF74C7}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,7 @@
+{
+    "model":
+    {
+        "model":"models/cargoship/Cargoship.obj",
+        "texture":"models/cargoship/CargoshipFinal.png"
+    }
+}

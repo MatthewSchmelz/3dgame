@@ -46,8 +46,6 @@ typedef struct Entity_S
     Vector3D    rotation;
     
     Uint32      health;     /**<entity dies when it reaches zero*/
-<<<<<<< Updated upstream
-=======
     //
     // CHANGES MADE BY YOURS TRULY
     //
@@ -72,7 +70,6 @@ typedef struct Entity_S
     Model* modelcon2;
     Model* modelcon3;
 
->>>>>>> Stashed changes
     // WHATEVER ELSE WE MIGHT NEED FOR ENTITIES
     struct Entity_S *target;    /**<entity to target for weapons / ai*/
     
@@ -125,4 +122,19 @@ void entity_think_all();
  */
 void entity_update_all();
 
+///Extra functions to work with for my entity system
+
+
+/**
+ * @brief Reduce the entity's stage back a random amount.
+ */
+void entity_reduce_stage();
+/**
+ * @brief kill the player/trigger a jump-scare for the player
+ */
+void entity_kill_player();
+/**
+ * @brief Increase the entity's current stage
+ */
+void entity_increase_stage();
 #endif
